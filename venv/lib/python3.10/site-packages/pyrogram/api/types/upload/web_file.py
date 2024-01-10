@@ -1,0 +1,77 @@
+# Pyrogram - Telegram MTProto API Client Library for Python
+# Copyright (C) 2017-2018 Dan Tès <https://github.com/delivrance>
+#
+# This file is part of Pyrogram.
+#
+# Pyrogram is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Pyrogram is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with Pyrogram.  If not, see <http://www.gnu.org/licenses/>.
+
+from io import BytesIO
+
+from pyrogram.api.core import *
+
+
+class WebFile(Object):
+    """
+    Attributes:
+        ID (:obj:`int`): ``0x21e753bc``
+
+    Args:
+        size: :obj:`int`
+        mime_type: :obj:`string`
+        file_type: :class:`pyrogram.api.types.storage.FileType`
+        mtime: :obj:`int`
+        bytes: :obj:`bytes`
+    """
+    ID = 0x21e753bc
+
+    def __init__(self, size, mime_type, file_type, mtime, bytes):
+        self.size = size  # int
+        self.mime_type = mime_type  # string
+        self.file_type = file_type  # storage.FileType
+        self.mtime = mtime  # int
+        self.bytes = bytes  # bytes
+
+    @staticmethod
+    def read(b: BytesIO, *args) -> "WebFile":
+        # No flags
+        
+        size = Int.read(b)
+        
+        mime_type = String.read(b)
+        
+        file_type = Object.read(b)
+        
+        mtime = Int.read(b)
+        
+        bytes = Bytes.read(b)
+        
+        return WebFile(size, mime_type, file_type, mtime, bytes)
+
+    def write(self) -> bytes:
+        b = BytesIO()
+        b.write(Int(self.ID, False))
+
+        # No flags
+        
+        b.write(Int(self.size))
+        
+        b.write(String(self.mime_type))
+        
+        b.write(self.file_type.write())
+        
+        b.write(Int(self.mtime))
+        
+        b.write(Bytes(self.bytes))
+        
+        return b.getvalue()
