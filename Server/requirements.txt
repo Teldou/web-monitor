@@ -1,0 +1,7 @@
+aioredis
+motor
+quart
+pytest
+mongomock
+pytest-asyncio
+beautifulsoup4
