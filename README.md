@@ -32,11 +32,6 @@ Set env variables and lauch
 
 If you want to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## Links
-
-- Project homepage: https://github.com/username/myproject
-- Repository: https://github.com/username/myproject.git
-- Issue tracker: https://github.com/username/myproject/issues
 
 ## Licensing
 
