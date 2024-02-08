@@ -38,5 +38,3 @@ If you want to contribute to this project, please fork the repository and use a 
 The code in this project is licensed under MIT license.
 
 ---
-
-Please replace `username` and `myproject` with your actual GitHub username and project name. Also, make sure to replace the placeholder text with actual descriptions of your project.
